@@ -56,21 +56,47 @@ object Chapter02 {
     s.head.toLong * recursiveProduct(s.tail)
   }
 
-  // 10. Write a function that computes xn, where n is an integer. Use the following recursive definition:
-  // • xn = y · y if n is even and positive, where y = xn / 2.
-  // • xn = x · xn – 1 if n is odd and positive.
-  // • x0 = 1.
-  // • xn = 1 / x–n if n is negative.
-  // Don’t use a return statement.
+  // 10. Write a function that computes x^n, where n is an integer. Use the following recursive definition:
+  //  - x^n = y * y if n is even and positive, where y = x^(n/2).
+  //  - x^n = x * x^(n–1) if n is odd and positive.
+  //  - x^0 = 1.
+  //  - x^n = 1 / x^(-n) if n is negative.
+  // Don’t use a `return` statement.
+  def pow(x: Int, n: Int): Int = {
+    if (n > 0) {
+      if (n % 2 == 0) {
+        val y = pow(x, n / 2)
+        y * y
+      } else {
+        x * pow(x, n - 1)
+      }
+    } else if (n == 0) {
+      1
+    } else {
+      1 / pow(x, -n)
+    }
+  }
 
   // 11. Define a string interpolator date so that you can define a java.time.LocalDate as
   // date"$year-$month-$day". You need to define an “implicit” class with a date
   // method, like this:
   // ```implicit class DateInterpolator(val sc: StringContext) extends AnyVal {
-  //   def date(args: Any*): LocalDate = . . .
+  //   def date(args: Any*): LocalDate = ...
   // }```
   // `args(i)` is the value of the ith expression. Convert each to a string and then to an integer, and pass them to the
   // `LocalDate.of` method. If you already know some Scala, add error handling. Throw an exception if there aren’t three
   // arguments, or if they aren’t integers, or if they aren’t separated by dashes. (You get the strings in between the
   // expressions as `sc.parts`.)
+  implicit class DateInterpolator(val sc: StringContext) extends AnyVal {
+    import java.time.LocalDate
+    def date(args: Any*): LocalDate = {
+      if(args.size != 3) {
+        throw new IllegalArgumentException("Not enough parameters")
+      }
+      val year = args(0).toString.toInt
+      val month = args(1).toString.toInt
+      val day = args(2).toString.toInt
+      LocalDate.of(year, month, day)
+    }
+  }
 }
