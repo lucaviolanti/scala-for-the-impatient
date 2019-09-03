@@ -43,7 +43,7 @@ object Chapter03 {
 
   // 4. Given an array of integers, produce a new array that contains all positive values of the original array, in
   // their original order, followed by all values that are zero or negative, in their original order.
-  def task4(array: Array[Int]): Array[Int] = {
+  def task04(array: Array[Int]): Array[Int] = {
     val parts = array.partition(_ > 0)
     Array.concat(parts._1, parts._2)
   }
