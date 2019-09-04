@@ -49,8 +49,10 @@ object Chapter01 {
 
   // 7. What do you need to import so that you can get a random prime as `probablePrime(100, Random)`, without any
   // qualifiers before `probablePrime` and `Random`?
+
   import BigInt.probablePrime
   import scala.util.Random
+
   val res7 = probablePrime(100, Random)
 
   // 8. One way to create random file or directory names is to produce a random BigInt and convert it to base 36,

@@ -40,7 +40,7 @@ object Chapter02 {
 
   // 7. Solve the preceding exercise without writing a loop. (Hint: Look at the StringOps Scaladoc.)
   def productOfUnicodesWithoutLoops(s: String): Long = {
-    s.foldLeft(1L)(_*_.toInt)
+    s.foldLeft(1L)(_ * _.toInt)
   }
 
   // 8. Write a function product(s : String) that computes the product, as described in the preceding exercises.
@@ -49,7 +49,7 @@ object Chapter02 {
   }
 
   // 9. Make the function of the preceding exercise a recursive function.
-  def recursiveProduct(s : String): Long = {
+  def recursiveProduct(s: String): Long = {
     if (s.isEmpty) {
       return 1L
     }
@@ -88,9 +88,11 @@ object Chapter02 {
   // arguments, or if they aren’t integers, or if they aren’t separated by dashes. (You get the strings in between the
   // expressions as `sc.parts`.)
   implicit class DateInterpolator(val sc: StringContext) extends AnyVal {
+
     import java.time.LocalDate
+
     def date(args: Any*): LocalDate = {
-      if(args.size != 3) {
+      if (args.size != 3) {
         throw new IllegalArgumentException("Not enough parameters")
       }
       val year = args(0).toString.toInt
@@ -99,4 +101,5 @@ object Chapter02 {
       LocalDate.of(year, month, day)
     }
   }
+
 }
