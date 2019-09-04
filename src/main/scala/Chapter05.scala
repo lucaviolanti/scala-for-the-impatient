@@ -108,15 +108,15 @@ object Chapter05 {
   // license plate to the empty string. Which constructor are you choosing as the primary constructor? Why?
   class Car(val manufacturer: String, val modelName: String, val modelYear: Int = -1, var licensePlate: String = "") {
     def this(manufacturer: String, modelName: String, modelYear: Int) {
-      this(manufacturer, modelName, modelYear)
+      this(manufacturer, modelName, modelYear, "")
     }
 
     def this(manufacturer: String, modelName: String, licensePlate: String) {
-      this(manufacturer, modelName, licensePlate = licensePlate)
+      this(manufacturer, modelName, -1, licensePlate)
     }
 
     def this(manufacturer: String, modelName: String) {
-      this(manufacturer, modelName, -1)
+      this(manufacturer, modelName, -1, "")
     }
   }
 
