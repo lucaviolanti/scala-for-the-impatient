@@ -28,7 +28,7 @@ package com {
 
 package com.horstmann.impatient {
 
-  object ImpatientLevel {
+  object ImpatientLevel2 {
     // println(ComLevel.a)
     // it doesn't work
   }
