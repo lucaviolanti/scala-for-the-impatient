@@ -152,6 +152,20 @@ object Chapter08 {
 
   // 11. Define a value class `Point` that packs integer `x` and `y` coordinates into a `Long`
   // (which you should make private).
+  object exercise11 {
 
+    class Point private(private val packed: Long) {
+      def x: Int = (packed >> 32).toInt
+
+      def y: Int = packed.toInt
+    }
+
+    object Point {
+      def apply(x: Int, y: Int): Point = {
+        new Point((x.toLong << 32) | y)
+      }
+    }
+
+  }
 
 }
