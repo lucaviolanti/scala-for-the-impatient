@@ -149,6 +149,10 @@ object Chapter08 {
   // class Stack[A] protected (protected val elems: List[A])
   // ```
   // Explain the meanings of the protected keywords. (Hint: Review the discussion of private constructors in Chapter 5.)
+  /* The first `protected` refers to the constructor; it makes it only invokable by another constructor within `Stack`
+  * or a descendant class. Same for the the `elems` field.
+  */
+
 
   // 11. Define a value class `Point` that packs integer `x` and `y` coordinates into a `Long`
   // (which you should make private).
