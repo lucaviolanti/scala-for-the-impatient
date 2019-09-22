@@ -19,6 +19,7 @@ build/
 .scala_dependencies
 .cache
 .cache-main
+.metals
 
 #general
 *.class
