@@ -1,6 +1,13 @@
 object Chapter09 {
   // 1. Write a Scala code snippet that reverses the lines in a file (making the last line the first one and so on).
-
+  def reverseLinesInAFile(pathToFile: String): List[String] = {
+    import scala.io.Source
+    import scala.collection.mutable._
+    val lines = Source.fromFile(pathToFile).getLines()
+    var reversedLines = Stack[String]()
+    for (l <- lines) reversedLines = Stack(l)++reversedLines
+    reversedLines.toList
+  }
   // 2. Write a Scala program that reads a file with tabs, replaces each tab with spaces so that tab stops are at
   // n-column boundaries, and writes the result to the same file.
 
