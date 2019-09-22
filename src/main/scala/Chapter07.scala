@@ -102,7 +102,6 @@ object Chapter07Continued {
   // password is not "secret". Otherwise, print a greeting to the standard output stream. Do not use any other imports,
   // and do not use any qualified names (with dots).
   object program extends App {
-    override def main(args: Array[String]): Unit = {
       import java.lang.System._
 
       val name = getProperty("user.name")
@@ -112,8 +111,6 @@ object Chapter07Continued {
       } else {
         println(s"Hello, ${name}!")
       }
-    }
-
   }
 
   // 10. Apart from `StringBuilder`, what other members of `java.lang` does the `scala` package override?
