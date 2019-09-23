@@ -1,0 +1,7 @@
+			I am a file with tabs
+				big tabs
+					pretty much everywhere.
+						Yup,
+							more
+								tabs.
+	Even	some	tabs	in	between sentences.
