@@ -1,8 +1,9 @@
+import scala.math.Ordering.Double
+
 object Chapter09 {
   // 1. Write a Scala code snippet that reverses the lines in a file (making the last line the first one and so on).
   def reverseLinesInAFile(pathToFile: String): List[String] = {
     import scala.io.Source
-    import scala.collection.mutable._
     val file = Source.fromFile(pathToFile)
     val reversedLines = file.getLines().toList.reverse
     file.close()
@@ -14,7 +15,6 @@ object Chapter09 {
   // n-column boundaries, and writes the result to the same file.
   def replaceTabsWithSpaces(pathToFile: String, nColumns: Int = 2): Unit = {
     import scala.io.Source
-    import scala.collection.mutable._
     val file = Source.fromFile(pathToFile)
     val lines = file.getLines
     for (l <- lines) {
@@ -27,9 +27,29 @@ object Chapter09 {
 
   // 3. Write a Scala code snippet that reads a file and prints all words with more than 12 characters to the console.
   // Extra credit if you can do this in a single line.
+  def printAllWordsWithMoreThan12Characters(pathToFile: String): Unit = {
+    import scala.io.Source
+    val file = Source.fromFile(pathToFile)
+    val lines = file.getLines().toList
+    println(lines.flatMap(s => s.split("\\s")).filter(s => s.length > 12))
+    file.close()
+    // Try it with `printAllWordsWithMoreThan12Characters("src/main/resources/file-with-tabs.txt")`
+  }
 
   // 4. Write a Scala program that reads a text file containing only floating-point numbers.
   // Print the sum, average, maximum, and minimum of the numbers in the file.
+  def printSumAverageMaximumAndMinimum(pathToFile: String): Unit = {
+    import scala.io.Source
+    implicit val ordering = Ordering.Double.TotalOrdering
+    val file = Source.fromFile(pathToFile)
+    val lines = file.getLines().toList
+    val numbers = lines.map(_.toDouble)
+    val sum = numbers.foldLeft(0.0)(_ + _)
+    println(s"Sum: ${sum}\nAverage: ${sum / numbers.length}")
+    println(s"Max: ${numbers.max}\nMin: ${numbers.min}")
+    file.close()
+    // Try it with `printSumAverageMaximumAndMinimum("src/main/resources/file-containing-only-floating-point-numbers.txt")`
+  }
 
   // 5. Write a Scala program that writes the powers of 2 and their reciprocals to a file, with the exponent ranging
   // from 0 to 20. Line up the columnsL
