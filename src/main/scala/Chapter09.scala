@@ -30,8 +30,7 @@ object Chapter09 {
   def printAllWordsWithMoreThan12Characters(pathToFile: String): Unit = {
     import scala.io.Source
     val file = Source.fromFile(pathToFile)
-    val lines = file.getLines().toList
-    println(lines.flatMap(s => s.split("\\s")).filter(s => s.length > 12))
+    file.mkString.split("\\W+").filter(s => s.length > 12).foreach(println)
     file.close()
     // Try it with `printAllWordsWithMoreThan12Characters("src/main/resources/file-with-tabs.txt")`
   }
@@ -52,14 +51,22 @@ object Chapter09 {
   }
 
   // 5. Write a Scala program that writes the powers of 2 and their reciprocals to a file, with the exponent ranging
-  // from 0 to 20. Line up the columnsL
+  // from 0 to 20. Line up the columns.
   //    1     1
   //    2     0.5
   //    4     0.25
   //  ...     ...
+  def printTheFirst21PowersOf2AndTheirReciprocals(): Unit = {
+    println(s"1\t1") // deal with the special case first
+    for (exp <- 1 to 20) {
+      val pow = math.pow(2, exp).toInt
+      println(s"${pow}\t${1d/pow}")
+    }
+  }
 
   // 6. Make a regular expression searching for quoted strings "like this, maybe with \" or \\" in a Java or C++
   // program. Write a Scala program that prints out all such string in a source file.
+
 
   // 7. Write a Scala program that reads a text file and prints all tokens in the file that are not floating point
   // numbers. Use a regular expression.
