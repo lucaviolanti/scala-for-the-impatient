@@ -65,8 +65,15 @@ object Chapter09 {
   }
 
   // 6. Make a regular expression searching for quoted strings "like this, maybe with \" or \\" in a Java or C++
-  // program. Write a Scala program that prints out all such string in a source file.
-
+  // program. Write a Scala program that prints out all such strings in a source file.
+  def searchQuotedStrings(pathToFile: String): Unit = {
+    import scala.io.Source
+    val file = Source.fromFile(pathToFile)
+    val quoted = """\"(\\.|[^\"])*\"""".r
+    quoted.findAllIn(file.mkString).foreach(println)
+    file.close()
+    // Try it with `searchQuotedStrings("src/main/scala/Chapter01.scala")`
+  }
 
   // 7. Write a Scala program that reads a text file and prints all tokens in the file that are not floating point
   // numbers. Use a regular expression.
