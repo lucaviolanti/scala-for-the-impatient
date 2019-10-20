@@ -58,7 +58,7 @@ object Chapter09 {
     println(s"1\t1") // deal with the special case first
     for (exp <- 1 to 20) {
       val pow = math.pow(2, exp).toInt
-      println(s"${pow}\t${1d/pow}")
+      println(s"${pow}\t${1d / pow}")
     }
   }
 
@@ -94,9 +94,15 @@ object Chapter09 {
 
   // 9. Write a Scala program that counts how many files with `.class` extension are in a given directory and its
   // subdirectories.
-  def countClassFilesInDirectoryTree(pathToDirectory: String): Int = ???
+  def countClassFilesInDirectoryTree(pathToDirectory: String): Int = {
+    new File(pathToDirectory)
+      .listFiles()
+      .count(f => f.isFile && f.getName.endsWith(".class"))
+    // Try it with `countClassFilesInDirectoryTree("target/scala-2.13/classes")`
+  }
 
   // 10. Expand the example in Section 9.8, "Serialization", on page 113. Construct a few `Person` objects, make
   // some of them friends of others, and save an `Array[Person]` to a file. Read the array back in and verify that
   // the friend relations are intact.
+  /* Maybe another time */
 }
